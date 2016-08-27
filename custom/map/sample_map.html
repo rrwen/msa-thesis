@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		
+		<!-- Info -->
+		<meta charset="utf-8">
+		<title>Sample Map</title>
+		<meta name="description" content="Sample Map for Thesis Defense">
+		<meta name="author" content="Richard Wen">
+		
+		<!-- CSS -->
+		<link rel="stylesheet" href="../../leaflet/leaflet.css">
+		<style>
+			.legend {
+				margin-top: 1px
+				line-height: 18px;
+				color: #555;
+				background: #ffffff;
+				padding: 10px;
+				border-radius: 5px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-webkit-box-shadow: 0px 0px 10px 3px #888888;
+				-moz-box-shadow: 0px 0px 10px 3px #888888;
+				box-shadow: 0px 0px 10px 3px #888888;
+			}
+			.legend i {
+				width: 12px;
+				height: 12px;
+				float: left;
+				margin-right: 3px;
+				margin-top: 3px;
+				opacity: 0.7;
+				border: 1px solid #252525;
+			}
+			.circle {
+				border-radius: 50%;
+			}
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<!-- Create webmap div and source lib and data-->
+		<div id="webmap" style="height: 98vh;"></div>
+		<script src="../../leaflet/leaflet.js"></script>
+		<script src="amenities.geojson"></script>
+		
+		<!-- Webmap JS Script -->
+		<script>
+		
+			// Setup leaflet map
+			var southWest = L.latLng(43.5985, -79.5215),
+				northEast = L.latLng(43.7778, -79.3165),
+				bounds = L.latLngBounds(southWest, northEast);
+			var webmap = L.map('webmap', {
+				center: bounds.getCenter(),
+				zoom: 12,
+				maxBounds: bounds,
+				maxBoundsViscosity: 1.0});
+			L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.{ext}', {
+				attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+				subdomains: 'abcd',
+				minZoom: 12,
+				maxZoom: 20,
+				ext: 'png'
+			}).addTo(webmap);
+			
+			// Popups
+			function onEachFeature(feature, layer) {
+				// does this feature have a property named popupContent?
+				if (feature.properties && feature.properties.popupContent) {
+					layer.bindPopup(feature.properties.popupContent);
+				}
+			};
+			
+			// Style data points
+			function getColor(d) {
+				return d == "fire_station" ? "#f0027f" :
+					   d == "fuel" ? "#666666" :
+					   d == "hospital" ? "#7fc97f" :
+					   d == "library" ? "#fdc086" :
+					   d == "police" ? "#386cb0" :
+					   d == "school" ? "#ffff99" :
+					   d == "townhall" ? "#bf5b17" :
+					   d == "university" ? "#beaed4" :
+					   "#ffffff"
+			}
+			function getStyle(feature) {
+				return {
+					radius: 7,
+					fillColor: getColor(feature.properties.type),
+					color: "#252525",
+					weight: 1,
+					opacity: 1,
+					fillOpacity: 1
+				}
+			}
+			
+			// Create data points with popups
+			L.geoJson(data, {
+				onEachFeature: onEachFeature,
+				pointToLayer: function (feature, latlng){
+					var txt = "<b>ID: </b>" + feature.properties.osm_id + "<br>"
+						+ "<b>Name: </b>" + feature.properties.name + "<br>"
+						+ "<b>Class: </b>" + feature.properties.type + "<br>"
+						+ "<b>Nearest Fuel Station: </b>" + Math.round(feature.properties.near_fuel) + " meters<br>"
+						+ "<b>Nearest School: </b>" + Math.round(feature.properties.near_schoo) + " meters<br>"
+						+ "<b>Nearest Police Station: </b>" + Math.round(feature.properties.near_polic) + " meters<br>"
+						+ "<b>Nearest Library: </b>" + Math.round(feature.properties.near_libra) + " meters<br>"
+						+ "<b>Nearest Hospital: </b>" + Math.round(feature.properties.near_hospi) + " meters<br>"
+						+ "<b>Nearest Fire Station: </b>" + Math.round(feature.properties.near_fire_) + " meters<br>"
+						+ "<b>Nearest University: </b>" + Math.round(feature.properties.near_unive) + " meters<br>"
+						+ "<b>Nearest Townhall: </b>" + Math.round(feature.properties.near_townh) + " meters<br>"
+						+ "<b>Representative X Coordinate: </b>" + feature.properties.repx + "<br>"
+						+ "<b>Representative Y Coordinate: </b>" + feature.properties.repx + "<br>"
+						+ "<b>Length: </b>" + Math.round(feature.properties.length) + " meters<br>"
+						+ "<b>Area: </b>" + Math.round(feature.properties.area) + " meters<br>"
+						+ "<b>Vertices: </b>" + Math.round(feature.properties.vertices) + "<br>";
+					return L.circleMarker(latlng, getStyle(feature)).bindPopup(txt);
+				}
+			}).addTo(webmap);
+			
+			// Create legend for data points
+			function getLabel(d) {
+				return d == "fire_station" ? "Fire Station" :
+					   d == "fuel" ? "Fuel Station" :
+					   d == "hospital" ? "Hospital" :
+					   d == "library" ? "Library" :
+					   d == "police" ? "Police Station" :
+					   d == "school" ? "School" :
+					   d == "townhall" ? "Townhall" :
+					   d == "university" ? "University" :
+					   "Unknown"
+			}
+			var legend = L.control({position: 'bottomright'});
+			legend.onAdd = function (map) {
+				var div = L.DomUtil.create('div', 'info legend'),
+					labels = ["fire_station", "fuel", "hospital", "library", "police", "school", "townhall", "university"];
+
+				// loop through our density intervals and generate a label with a colored square for each interval
+				for (var i = 0; i < labels.length; i++) {
+					div.innerHTML +=
+						'<i class= "circle" style="background:' + getColor(labels[i]) + '"></i> ' +
+						(getLabel(labels[i]) ? getLabel(labels[i]) + '<br>' : '+');
+			}
+
+				return div;
+			};
+
+			legend.addTo(webmap);
+			
+		</script>
+	</body>
+	
+</html>

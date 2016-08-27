@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	
+		<!-- Info -->
+		<meta charset="utf-8">
+		<title>Thesis Defense (Wen, 2016)</title>
+		<meta name="description" content="Masters of Spatial Analysis Thesis Defense (2016)">
+		<meta name="author" content="Richard Wen">
+		
+		<!-- Mobile -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		
+		<!-- Style Sheet -->
+		<link rel="stylesheet" href="reveal/css/reveal.css">
+		<link rel="stylesheet" href="reveal/css/theme/white.css" id="theme">
+		<link rel="stylesheet" href="reveal/lib/css/zenburn.css"> <!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="custom/css/custom.css">
+		<link rel="stylesheet" href="leaflet/leaflet.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal/css/print/pdf.css' : 'reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		
+		<!-- IE Support -->
+		<!--[if lt IE 9]>
+			<script src="reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+		
+	</head>
+
+	<body>
+	
+		<!-- Slides -->
+		<div class="reveal">
+			<div class="slides">
+				
+				<!-- Title -->
+				<section data-state="tree-background">
+					<h1>
+						Geospatial Semantic Pattern Recognition of<br>
+						Volunteered Geographic Data Using<br>
+						the Random Forest Algorithm
+					</h1>
+					<small>
+						Richard Wen<br>
+						rwen@ryerson.ca<br><br>
+						
+						A Thesis Defense for the degree of<br>
+						Master of Spatial Analysis<br>
+						at Ryerson University<br>
+						Under the Guidance of<br>
+						Dr. Claus Rinner<br>
+						on<br>
+						April 27, 2016<br>
+						<span class="cite" style="font-size: 0.6em" title="The slides were revised after the defense to reflect the revisions to the thesis recommended by the committee and supervisor.">Revised May 12, 2016</span>
+					</small>
+				</section>
+				
+				<!-- Overview -->
+				<section  data-state="tree-background">
+					<h2 id="overview">Overview</h2>
+					<ul>
+						<li><a href="#/2">Introduction</a><br></li>
+						<li><a href="#/11">Data</a><br></li>
+						<li><a href="#/16">Methodology</a><br></li>
+						<li><a href="#/24">Results</a></li>
+						<li><a href="#/33">Discussion and Conclusion</a></li>
+						<li><a href="#/38">References</a></li>
+					</ul>
+					<p class="ref">
+						Notes:
+						<span class="cite" title="Hover over text similar to this to reveal extra information. You may press M to return to the overview slide which includes clickable links for quick navigation to each section.">Hover for Info</span>
+					</p>
+				</section>
+				
+				<!-- Intro -->
+				
+				<section  data-state="tree-background">
+					<h2>Introduction</h2>
+					<ul>
+						<li><a href="#/3">Volunteered Geographic Data</a><br></li>
+						<li><a href="#/5">Decision Trees</a><br></li>
+						<li><a href="#/8">Random Forests</a><br></li>
+						<li><a href="#/10">Research Objective</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>Volunteered Geographic Data (VGD)</h3>
+					<p>Geospatial data from engagement of private citizens</p>
+					<table>
+						<tr>
+							<th>Advantages</th>
+							<th>Disadvantages</th>
+						</tr>
+						<tr>
+							<td>Cost effective</td>
+							<td>Uncertain quality</td>
+						</tr>
+						<tr>
+							<td>High temporal resolution</td>
+							<td>User behaviour</td>
+						</tr>
+						<tr>
+							<td>Large quantities</td>
+							<td>Maintenance</td>
+						</tr>
+					</table>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Feick, R., & Roche, S. (2012). Understanding the Value of VGI. In D. Sui, S. Elwood, & M. Goodchild, Crowdsourcing geographic knowledge (pp. 15-29). Dordrecht: Springer.">(Feick & Roche, 2012)</span>;
+						<span class="cite" title="Goodchild, M. F. (2007). Citizens as sensors: the world of volunteered geography. GeoJournal, 211-221.">(Goodchild, 2007)</span>;
+						<span class="cite" title="Koukoletsos, T., Haklay, M., & Ellul, C. (2012). Assessing data completeness of VGI through an automated matching procedure for linear data. Transactions in GIS, 16(4), 477-498.">(Koukoletsos et al., 2012)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Random Forests and VGD</h3>
+					<ul>
+						<li>Minimal preprocessing of variables</li>
+						<li>Automatable, parallellizable, and scalable</li>
+						<li>Detection of outliers</li>
+						<li>Insight into variable influences on predictions</li>
+						<li>Takes advantage of spatially enabled data</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>Decision Trees</h3>
+					<ul>
+						<li>Root Node: 0 incoming and >= 1 outgoing paths</li>
+						<li>Internal Node: 1 incoming and >= 2 outgoing paths</li>
+						<li>Leaf Node: 1 incoming and 0 outgoing paths</li>
+					</ul>
+					<img class="fig" src="custom/img/decision_trees.png">
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Tan, P.-N., Steinbach, M., & Kumar, V. (2006). Introduction to Data Mining. Pearson Education.">(Tan, Steinbach, & Kumar, 2006)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Decision Trees: Information Gain</h3>
+					<ul>
+						<li>Purity: measure of quality of split</li>
+						<li>Maximize purity to determine best variable for split</li>
+						<li>Reduction of prediction uncertainty for split</li>
+						<li>E.g Given bus stop distance, predict if an object = school:</li>
+					</ul>
+					<img class="fig" style="width: 70%" src="custom/img/purity.png">
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Quinlan, J. R. (1984). Induction of decision trees. Machine Learning, 1(1), 81-106.">(Quinlan, 1984)</span>;
+						<span class="cite" title="Rokach, L., & Maimon, O. (2005). Top-Down Induction of Decision Trees Classifiers—A Survey. IEEE Transactions on Systems, Man, and Cybernetics, Part C (Applications and Reviews), 35(4), 476-487.">(Rokach & Maimon, 2005)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Decision Trees: Algorithm</h3>
+					<ol>
+						<li>Obtain information gains for all variables</li>
+						<li>Split on highest information gain variable</li>
+						<li>Repeat 1 & 2 on remaining nodes</li>
+						<li>Stop when criteria met (e.g. leaf nodes remain)</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h3>Random Forests</h3>
+					<p>Model with many decision trees from random sampling</p>
+					<ul>
+						<li>Reduces overfitting issue from decision trees</li>
+						<li>Aggregate decision trees for predictions</li>
+						<li>Less sensitive to errors and outliers</li>
+					</ul>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5-32.">(Breiman, 2001)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Random Forests: Algorithm</h3>
+					<ol>
+						<li>Randomly sample ~2/3 of data</li>
+						<li>Train decision tree on random sample</li>
+						<li>Repeat 1-3 until desired # of trees</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h3>Research Objective</h3>
+					<p>
+						Discover and explain patterns in VGD with<br>
+						automated random forest models trained on <br>
+						geospatial semantic variables using OSM data<br>
+						in the City of Toronto, Ontario, as a demonstration
+					</p>
+				</section>
+				
+				<!-- Data -->
+				
+				<section  data-state="tree-background">
+					<h2>Data</h2>
+					<ul>
+						<li><a href="#/12">OpenStreetMap</a></li>
+						<li><a href="#/13">Mapzen Metro Extracts</a></li>
+						<li><a href="#/14">Geospatial Semantic Variables</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<img src="custom/img/osm_logo.svg" class="img-header"></img><h3>OpenStreetMap (OSM)</h3>
+					<p>Online Collaborative Platform for users to generate VGD</p>
+					<ol>
+						<li>Digitize geographic object</li>
+						<li>Tag geographic object (e.g. amenity=college)</li>
+					</ol>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Haklay, M. M. (2008). OpenStreetMap: User-Generated Street Maps. Pervasive Computing, 12-18.">(Haklay, 2008)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Mapzen Metro Extracts</h3>
+					<ul>
+						<li>City-sized OSM data in standard geospatial formats</li>
+						<li>Used 70,898 geographic objects in the City of Toronto</li>
+						<li>Planar reprojection (UTM NAD83 Zone 17N)</li>
+					</ul>
+					<table style="font-size:80%;">
+						<tr>
+							<th>Category</th>
+							<th>Geometry Type</th>
+							<th>Count</th>
+						</tr>
+						<tr>
+							<td>Places</td>
+							<td>Point</td>
+							<td>760</td>
+						</tr>
+						<tr>
+							<td>Amenities</td>
+							<td>Point</td>
+							<td>1507</td>
+						</tr>
+						<tr>
+							<td>Transport Areas</td>
+							<td>Polygon</td>
+							<td>72</td>
+						</tr>
+						<tr>
+							<td>Aero Ways</td>
+							<td>Line</td>
+							<td>438</td>
+						</tr>
+						<tr>
+							<td>Transport Points</td>
+							<td>Point</td>
+							<td>21,309</td>
+						</tr>
+						<tr>
+							<td>Roads</td>
+							<td>Line</td>
+							<td>46,812</td>
+						</tr>
+					</table>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Mapzen. (2016, March 10). Metro Extracts. Retrieved from Mapzen: https://mapzen.com/data/metro-extracts/">(Mapzen, 2016)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Geospatial Semantic Variables</h3>
+					<ul>
+						<li>Extracted from geometry data</li>
+						<li>Representative Coordinates (Rep-X, Rep-Y)</li>
+						<li>Nearest Neighbour Distances of Each Class (NNc)</li>
+					</ul>
+					<table>
+						<tr>
+							<th>Area</th>
+							<th>Length</th>
+							<th>Vertices</th>
+							<th>Rep-X</th>
+							<th>Rep-Y</th>
+							<th>NNc</th>
+						</tr>
+						<tr>
+							<td>Meters</td>
+							<td>Meters</td>
+							<td>Count</td>
+							<td>Position</td>
+							<td>Position</td>
+							<td>Distance</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+					</table>
+				</section>
+				
+				<section>
+					<p>Sample Amenities Data for Toronto, ON</p>
+					<iframe class="webmap" src="custom/map/sample_map.html" scrolling="no"></iframe>
+				</section>
+				
+				<!-- Methodology -->
+				
+				<section data-state="tree-background">
+					<h2>Methodology</h2>
+					<ul>
+						<li><a href="#/18">Multicollinearity Reduction</a></li>
+						<li><a href="#/19">Parameter Optimization</a></li>
+						<li><a href="#/20">Cross-validation Performance</a></li>
+						<li><a href="#/21">Average Class Probability</a></li>
+						<li><a href="#/22">Variable Importance</a></li>
+						<li><a href="#/23">Outlier Measure and Variable Contributions</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>Methodology: Overview</h3>
+					<img class="fig" src="custom/img/method_flow.png">
+				</section>
+				
+				<section>
+					<h3>Multicollinearity Reduction</h3>
+					<p>Order area, length, vertices, & coordinates first</p>
+							<pre style="padding:10px">
+<b class="code-func">Set</b> <span class="code-var">Remain</span> as all available variables in a desired order
+<b class="code-func">For each</b> variable <span class="code-var">Var1</span> in <span class="code-var">Remain</span>:
+	<b class="code-func">Set</b> <span class="code-var">Other</span> as all <span class="code-var">Remain</span> variables that are not <span class="code-var">Var1</span>
+	<b class="code-func">For each</b> variable <span class="code-var">Var2</span> in <span class="code-var">Other</span>:
+		<b class="code-func">Compute</b> Pearson correlation <span class="code-var">Corr</span> of <span class="code-var">Var1</span> and <span class="code-var">Var2</span>
+		<b class="code-func">if</b> <span class="code-var">Corr</span> < = -0.7 or <span class="code-var">Corr</span>  > = 0.7:
+			<b class="code-func">Remove</b> <span class="code-var">Var2</span> from <span class="code-var">Remain</span>
+<b class="code-func">Output</b> <span class="code-var">Remain</span> contains variables without high multicollinearity
+							</pre>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Dietterich, T. G. (2000). Ensemble Methods in Machine Learning. Multiple classifier systems, 1857, 1-15.">(Dietterich, 2000)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Parameter Optimization</h3>
+					<p>
+						Determine model based on lowest out-of-bag error estimate;<br>
+						the generalization error from ~1/3 of the training samples</p>
+					<ul>
+						<li>64, 96, and 128 decision trees</li>
+						<li>Weights for unbalanced class frequencies</li>
+					</ul>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Oshiro, T. M., Perez, P. S., & Augusto, J. (2012). How many trees in a random forest? In P. Perner, Machine Learning and Data Mining in Pattern Recognition (Vol. 7376, pp. 154-168). Berlin: Springer.">(Oshiro et al., 2012)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Cross-validation Performance</h3>
+					<ul>
+						<li>Split dataset into folds for predicting on unseen data</li>
+						<li>F1 Score: class weighted accuracy</li>
+					</ul>
+					<table>
+						<tr>
+							<th>Folds</th>
+							<th>% Training</th>
+							<th>% Testing</th>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>50%</td>
+							<td>50%</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>80%</td>
+							<td>20%</td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td>90%</td>
+							<td>10%</td>
+						</tr>
+					</table>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Powers, D. M. (2011). Evaluation: from precision, recall and F-measure to ROC, informedness, markedness and correlation. Journal of Machine Learning Technologies, 2(1), 37-63.">(Powers, 2011)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Average Class Probability</h3>
+					<ul>
+						<li>Certainty for predictions of each class</li>
+						<li>0 to 1; uncertain to certain</li>
+						<li>Tree Probability: proportion of class samples in a leaf</li>
+						<li>Class Probability: mean of tree probabilities in forest</li>
+					</ul>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Bostrom, H. (2007). Estimating class probabilities in random forests. Machine Learning and Applications, 211-216.">(Bostrom, 2007)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Variable importance</h3>
+					<p>
+						Sum of weighted impurity decreases for nodes of a variable<br>
+						in forest averaged by sample size of trees.
+					</p>
+					<ul>
+						<li>Variable influence on predictions</li>
+						<li>Ranked to show most important variables</li>
+						<li>Higher values indicate higher influence</li>
+					</ul>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Louppe, G., Wehenkel, L., Sutera, A., & Geurts, P. (2013). Understanding variable importances in forests of randomized trees. Advances in Neural Information Processing Systems, 431-439.">(Louppe et al., 2013)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Outlier Measure and Variable Contributions</h3>
+					<ul>
+						<li>Proximity: similarity between two data samples</li>
+						<li>Outlier Measure: normalized proximities within a class, where outliers are values greater than 10</li>
+						<li>Variable Contribution: changes in probability for class between nodes for a variable</li>
+					</ul>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Louppe, G. (2014). Understanding Random Forests: From Theory to Practice. Belgium: University of Liege.">(Louppe, 2014)</span>;
+						<span class="cite" title="Breiman, L., & Cutler, A. (2004). Random Forests. Retrieved March 23, 2016, from Random Forests: https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#outliers">(Breiman & Cutler, 2004)</span>;
+						<span class="cite" title="Palczewska, A., Palczewski, J., Robinson, R. M., & Neagu, D. (2014). Interpreting random forest classification models using a feature contribution method. Integration of Reusable Systems, 193-218.">(Palczewska et al., 2014)</span>
+					</p>
+				</section>
+				
+				<!-- Results -->
+				
+				<section data-state="tree-background">
+					<h2>Results</h2>
+					<ul>
+						<li><a href="#/25">Automated Python Script</a></li>
+						<li><a href="#/26">Optimized Number of Trees</a></li>
+						<li><a href="#/27">Cross-validation Performance</a></li>
+						<li><a href="#/28">Average Class Probabilities</a></li>
+						<li><a href="#/29">Variable Importance</a></li>
+						<li><a href="#/30">Outliers</a></li>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Automated Python Script</h3>
+					<img class="fig" src="custom/img/pyflow.png">
+				</section>
+				
+				<section>
+					<h3>Optimized Number of Trees</h3>
+					<table>
+						<tr>
+							<th>Trees</th>
+							<th>Out-of-bag Error</th>
+							<th>Fit</th>
+						</tr>
+						<tr>
+							<td>64</td>
+							<td>0.1667</td>
+							<td>0.9995</td>
+						</tr>
+						<tr>
+							<td>96</td>
+							<td>0.1646</td>
+							<td>0.9996</td>
+						</tr>
+						<tr>
+							<td>128</td>
+							<td>0.1645</td>
+							<td>0.9996</td>
+						</tr>
+					</table>
+				</section>
+				
+				<section>
+					<h3>Cross-validation Performance</h3>
+					<img class="fig" style="width:100%" src="custom/img/cv_perform.png">
+				</section>
+				
+				<section>
+					<h3>Average Class Probabilities</h3>
+					<img class="fig" style="width:100%" src="custom/img/avg_prob.png">
+				</section>
+				
+				<section>
+					<h3>Variable Importance</h3>
+					<img class="fig" style="width:100%" src="custom/img/var_import.png">
+				</section>
+				
+				<section>
+					<h3>Outliers</h3>
+					<img class="fig" style="width:100%" src="custom/img/outliers.png">
+				</section>
+				
+				<section>
+					<h3>Outliers: Variable Contributions</h3>
+					<img class="fig" style="width:100%" src="custom/img/outliers_contrib.png">
+				</section>
+				
+				<section>
+					<p>Example: Top 5 Variable Contrib. for Outliers</p>
+					<iframe class="webmap" src="custom/map/outlier_map.html" scrolling="no"></iframe>
+				</section>
+				
+				<!-- Discussion and Conclusion -->
+				
+				<section data-state="tree-background">
+					<h2>Discussion and Conclusion</h2>
+					<ul>
+						<li><a href="#/34">Recommendations and Auto-completion</a></li>
+						<li><a href="#/35">Information and Knowledge Support</a></li>
+						<li><a href="#/36">Limitations</a></li>
+						<li><a href="#/37">Conclusion</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>Recommendations and Auto-completion</h3>
+					<ul>
+						<li>Tag suggestions with variable influences</li>
+						<li>Automated tag completion with probabilities</li>
+						<li>Detection of interesting objects</li>
+					</ul>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Karagiannakis, N., Giannopoulos, G., Skoutas, D., & Athanasiou, S. (2015). OSMRec Tool for Automatic Recommendation of Categories on Spatial Entities in OpenStreetMap. Proceedings of the 9th ACM Conference on Recommender Systems (pp. 337-338). ACM.">(Karagiannakis et al., 2015)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Information and Knowledge Support</h3>
+					<ul>
+						<li>Improved user knowledge using variable metrics</li>
+						<li>Reduction of redundant data</li>
+						<li>Insight into data quality and semantics</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>Limitations</h3>
+					<ul>
+						<li>User editing history was not utilized</li>
+						<li>Raster data (e.g. satellite imagery) was not utilized</li>
+						<li>Only nearest neighbour considered</li>
+					</ul>
+					<p class="ref">
+						Ref: 
+						<span class="cite" title="Neis, P., Goetz, M., & Zipf, A. (2012). Towards Automatic Vandalism Detection in OpenStreetMap. ISPRS International Journal of Geo-Information, 1(3), 315-332.">(Neis, Goetz, & Zipf, 2015)</span>;
+						<span class="cite" title="Anselin, L. (1990). SPATIAL DEPENDENCE AND SPATIAL STRUCTURAL INSTABILITY IN APPLIED REGRESSION ANALYSIS. Journal of Regional Science, 30(2), 185-207.">(Anselin, 1990)</span>
+					</p>
+				</section>
+				
+				<section>
+					<h3>Conclusion</h3>
+					<p>
+						Random forests were effective as an automated method with useful metrics to assess potential geospatial data patterns in VGD.
+					</p>
+				</section>
+				
+				<!-- References -->
+				
+				<section data-state="tree-background">
+					<h2>References</h2>
+				</section>
+				
+				<section>
+					<ul>
+						<li>Anselin, L. (1990). SPATIAL DEPENDENCE AND SPATIAL STRUCTURAL INSTABILITY IN APPLIED REGRESSION ANALYSIS. Journal of Regional Science, 30(2), 185-207.</li>
+						<li>Bostrom, H. (2007). Estimating class probabilities in random forests. Machine Learning and Applications, 211-216.</li>
+						<li>Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5-32.</li>
+						<li>Breiman, L., & Cutler, A. (2004). Random Forests. Retrieved March 23, 2016, from Random Forests: <a href="https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#outliers">https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#outliers</a></li>
+						<li>Dietterich, T. G. (2000). Ensemble Methods in Machine Learning. Multiple classifier systems, 1857, 1-15.</li>
+					</ul>
+				</section>
+				
+				<section>
+					<ul>
+						<li>Feick, R., & Roche, S. (2012). Understanding the Value of VGI. In D. Sui, S. Elwood, & M. Goodchild, Crowdsourcing geographic knowledge (pp. 15-29). Dordrecht: Springer.</li>
+						<li>Goodchild, M. F. (2007). Citizens as sensors: the world of volunteered geography. GeoJournal, 211-221.</li>
+						<li>Haklay, M. M. (2008). OpenStreetMap: User-Generated Street Maps. Pervasive Computing, 12-18.</li>
+						<li>Karagiannakis, N., Giannopoulos, G., Skoutas, D., & Athanasiou, S. (2015). OSMRec Tool for Automatic Recommendation of Categories on Spatial Entities in OpenStreetMap. Proceedings of the 9th ACM Conference on Recommender Systems (pp. 337-338). ACM.</li>
+					</ul>
+				</section>
+				
+				<section>
+					<ul>
+						<li>Koukoletsos, T., Haklay, M., & Ellul, C. (2012). Assessing data completeness of VGI through an automated matching procedure for linear data. Transactions in GIS, 16(4), 477-498.</li>
+						<li>Louppe, G. (2014). Understanding Random Forests: From Theory to Practice. Belgium: University of Liege.</li>
+						<li>Louppe, G., Wehenkel, L., Sutera, A., & Geurts, P. (2013). Understanding variable importances in forests of randomized trees. Advances in Neural Information Processing Systems, 431-439.</li>
+						<li>Mapzen. (2016, March 10). Metro Extracts. Retrieved from Mapzen: <a href="https://mapzen.com/data/metro-extracts/">https://mapzen.com/data/metro-extracts/</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<ul>
+						<li>Oshiro, T. M., Perez, P. S., & Augusto, J. (2012). How many trees in a random forest? In P. Perner, Machine Learning and Data Mining in Pattern Recognition (Vol. 7376, pp. 154-168). Berlin: Springer.</li>
+						<li>Palczewska, A., Palczewski, J., Robinson, R. M., & Neagu, D. (2014). Interpreting random forest classification models using a feature contribution method. Integration of Reusable Systems, 193-218.</li>
+						<li>Powers, D. M. (2011). Evaluation: from precision, recall and F-measure to ROC, informedness, markedness and correlation. Journal of Machine Learning Technologies, 2(1), 37-63.</li>
+					</ul>
+				</section>
+				
+				<section>
+					<ul>
+						<li>Rokach, L., & Maimon, O. (2005). Top-Down Induction of Decision Trees Classifiers—A Survey. IEEE Transactions on Systems, Man, and Cybernetics, Part C (Applications and Reviews), 35(4), 476-487.</li>
+						<li>Tan, P.-N., Steinbach, M., & Kumar, V. (2006). Introduction to Data Mining. Pearson Education.</li>
+						<li>Quinlan, J. R. (1984). Induction of decision trees. Machine Learning, 1(1), 81-106.</li>
+					</ul>
+				</section>
+				
+				<!-- End -->
+				<section data-state="tree-background">
+					<h3>Thank You for Your Time</h3>
+				</section>
+			</div>
+		</div>
+		
+		<!-- Logos -->
+		<div class = "logos">
+			<a href="http://www.ryerson.ca/"><img src="custom/img/ryerson_logo.png" class="logo"></a>
+		</div>
+		
+		<!-- Libraries -->
+		<script src="reveal/lib/js/head.min.js"></script>
+		<script src="reveal/js/reveal.js"></script>
+		
+		<!-- Reveal Configuration -->
+		<!-- Full list of configuration options available at:
+		https://github.com/hakimel/reveal.js#configuration -->
+		<script>
+			Reveal.initialize({
+				
+				// Settings
+				slideNumber: true,
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				
+				// Keyboard
+				keyboard: {
+					77: function(){var indices = Reveal.getIndices(document.getElementById('overview')); Reveal.slide( indices.h, indices.v );}
+				},
+
+				// Plugins
+				dependencies: [
+					{ src: 'reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal/plugin/zoom-js/zoom.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+	
+</html>
