@@ -3,8 +3,8 @@ Richard Wen (rwen@ryerson.ca)
 Masters of Spatial Analysis, Ryerson University, 2016  
 Thesis Defended on April 27, 2016  
 Supervised by Dr. Claus Rinner
-* [PDF](https://github.com/rwenite/msa-thesis/blob/master/thesis.pdf)
-* [Defense Slides](https://rawgit.com/rwenite/msa-thesis/master/defense/index.html)
+* [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf)
+* [Defense Slides](https://rwenite.github.io/msa-thesis)
 
 ## Abstract
 The ubiquitous availability of location technologies has enabled large quantities of Volunteered Geographic Data (VGD) to be produced by users worldwide. VGD has been a cost effective and scalable solution to obtaining unique and freely available geospatial data. However, VGD suffers from reliability issues as user behaviour is often variable. Large quantities make manual assessments of the user generated data inefficient, expensive, and impractical. This research utilized a random forest algorithm based on geospatial semantic variables in order to aid the improvement and understanding of multi-class VGD without ground-truth reference data. An automated Python script of a random forest based procedure was developed. A demonstration of the automated script on OpenStreetMap (OSM) data with user generated tags in Toronto, Ontario, was effective in recognizing patterns in the OSM data with predictive performances of ~71% based on a class weighted metric, and the ability to reveal variable influences and outliers.
@@ -86,14 +86,14 @@ conda install rtree
 
 ### Run
 1. Download [this repository](https://github.com/rwenite/msa-thesis/archive/master.zip)  
-2. Unzip the file and navigate to the code folder `cd c:\path\to\msa-thesis\code`  
+2. Unzip the file and navigate to the code folder `cd c:\path\to\msa-thesis\py`  
 3. Execute the code using `python thesis.py`
 ```shell
-cd c:\path\to\msa-thesis\code
+cd c:\path\to\msa-thesis\py
 python thesis.py config.txt c:\path\to\output_folder
 ```  
 The config file can be used to apply and alter the methods to other datasets.  
-Please see Section 4.1 in the [PDF](https://github.com/rwenite/msa-thesis/blob/master/thesis.pdf) for more details.  
+Please see Section 4.1 in the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf) for more details.  
   
 *Note: The config.txt file contains the settings used to obtain the results in the thesis. The results may be different if the recent version of the [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/) is updated.*
   
