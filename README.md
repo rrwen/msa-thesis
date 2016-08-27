@@ -86,10 +86,10 @@ conda install rtree
 
 ### Run
 1. Download [this repository](https://github.com/rwenite/msa-thesis/archive/master.zip)  
-2. Unzip the file and navigate to the code folder `cd c:\path\to\msa-thesis\py`  
+2. Unzip the file and navigate to the code folder `cd c:\path\to\msa-thesis-master\py`  
 3. Execute the code using `python thesis.py`
 ```shell
-cd c:\path\to\msa-thesis\py
+cd c:\path\to\msa-thesis-master\py
 python thesis.py config.txt c:\path\to\output_folder
 ```  
 The config file can be used to apply and alter the methods to other datasets.  
