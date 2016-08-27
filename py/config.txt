@@ -1,0 +1,25 @@
+[settings]
+cores = -1
+[[plot]]
+plot_style = 'whitegrid'
+plot_dpi = 600
+plot_ext = '.png'
+[[analysis]]
+cross_validation_tests = [2, 5, 10]
+high_correlations = [-0.7, 0.7]
+outlier_value = 10
+persist = True
+[[forest]]
+n_estimators = [10, 64, 96, 128]
+criterion = ['entropy']
+class_weight = ['balanced']
+
+[toronto_osm]
+title = 'Toronto OpenStreetMap'
+src = 'https://s3.amazonaws.com/metro-extracts.mapzen.com/toronto_canada.imposm-geojson.zip'
+filter = ['places', 'amenities', 'transport_areas', 'aeroways', 'transport_points', 'roads_gen1']
+id = ['osm_id']
+keep_columns = []
+epsg = '26917'
+units = 'meters'
+target = 'type'
