@@ -43,7 +43,7 @@ pip install joblib
 pip install seaborn
 pip install treeinterpreter
 pip install tqdm
-conda install rtree
+conda install -c ioos rtree
 ```  
 
 *32-bit Example*
@@ -58,7 +58,7 @@ pip install joblib
 pip install seaborn
 pip install treeinterpreter
 pip install tqdm
-conda install rtree
+conda install -c ioos rtree
 ```  
 
 Thanks to [Geoff Boeing](http://geoffboeing.com/about/) for the [Using geopandas on windows](http://geoffboeing.com/2014/09/using-geopandas-windows/) blog post and [Christoph Gohlke](http://www.lfd.uci.edu/~gohlke/) for the [wheel files](http://www.lfd.uci.edu/~gohlke/pythonlibs/).
@@ -72,7 +72,7 @@ pip install tqdm
 conda install -c conda-forge geopandas
 conda install joblib
 conda install seaborn
-conda install rtree
+conda install -c ioos rtree
 ``` 
 
 ### Run
