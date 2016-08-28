@@ -33,7 +33,7 @@ The ubiquitous availability of location technologies has enabled large quantitie
   
 *64-bit Example*
 ```shell
-cd c:\path\to\downloaded_wheels
+cd c:/path/to/downloaded_wheels
 pip install GDAL-2.0.3-cp35-cp35m-win_amd64.whl
 pip install Fiona-1.7.0-cp35-cp35m-win_amd64.whl
 pip install pyproj-1.9.5.1-cp35-cp35m-win_amd64.whl
@@ -48,7 +48,7 @@ conda install -c ioos rtree
 
 *32-bit Example*
 ```shell
-cd c:\path\to\downloaded_wheels
+cd c:/path/to/downloaded_wheels
 pip install GDAL-2.0.3-cp35-cp35m-win32.whl
 pip install Fiona-1.7.0-cp35-cp35m-win32.whl
 pip install pyproj-1.9.5.1-cp35-cp35m-win32.whl
@@ -80,8 +80,8 @@ conda install -c ioos rtree
 2. Unzip the file and navigate to the code folder `cd c:\path\to\msa-thesis-master\py`  
 3. Execute the code using `python thesis.py`
 ```shell
-cd c:\path\to\msa-thesis-master\py
-python thesis.py config.txt c:\path\to\output_folder
+cd c:/path/to/msa-thesis-master/py
+python thesis.py config.txt c:/path/to/output_folder
 ```  
 The config file can be used to apply and alter the methods to other datasets.  
 Please see Section 4.1 in the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf) for more details.  
