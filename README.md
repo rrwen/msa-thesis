@@ -9,15 +9,6 @@ Supervised by Dr. Claus Rinner
 ## Abstract
 The ubiquitous availability of location technologies has enabled large quantities of Volunteered Geographic Data (VGD) to be produced by users worldwide. VGD has been a cost effective and scalable solution to obtaining unique and freely available geospatial data. However, VGD suffers from reliability issues as user behaviour is often variable. Large quantities make manual assessments of the user generated data inefficient, expensive, and impractical. This research utilized a random forest algorithm based on geospatial semantic variables in order to aid the improvement and understanding of multi-class VGD without ground-truth reference data. An automated Python script of a random forest based procedure was developed. A demonstration of the automated script on OpenStreetMap (OSM) data with user generated tags in Toronto, Ontario, was effective in recognizing patterns in the OSM data with predictive performances of ~71% based on a class weighted metric, and the ability to reveal variable influences and outliers.
 
-## Defense
-* **Date**: April 27, 2016
-* **Time**: 2:00 p.m. to 4:00 p.m.
-* **Location**: Jorgenson Hall 730, Ryerson University, Toronto, ON
-* **Chair**: Dr. Lu Wang
-* **Examiner 1**: Dr. Eric Vaz
-* **Examiner 2**: Dr. Tony Hernandez
-* **Result**: Pass with minor revisions
-
 ## Code
 
 ### Dependencies
@@ -96,7 +87,18 @@ The config file can be used to apply and alter the methods to other datasets.
 Please see Section 4.1 in the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf) for more details.  
   
 *Note: The config.txt file contains the settings used to obtain the results in the thesis. The results may be different if the recent version of the [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/) is updated.*
-  
+
+# Information
+
+### Defense
+* **Date**: April 27, 2016
+* **Time**: 2:00 p.m. to 4:00 p.m.
+* **Location**: Jorgenson Hall 730, Ryerson University, Toronto, ON
+* **Chair**: Dr. Lu Wang
+* **Examiner 1**: Dr. Eric Vaz
+* **Examiner 2**: Dr. Tony Hernandez
+* **Result**: Pass with minor revisions  
+
 ### Hardware
 Personal machine:
 * Windows 8.1 64-bit  
