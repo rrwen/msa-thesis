@@ -28,7 +28,7 @@ The ubiquitous availability of location technologies has enabled large quantitie
 1. Install [Anaconda Python 3.5](https://www.continuum.io/downloads#windows) for windows
 2. Download wheel files: [GDAL](http://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal), [Fiona](http://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona), [pyproj](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyproj), and [shapely](http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) for Python 3.5 (cp35)
 3. Uninstall existing OSGeo4W, GDAL, Fiona, pyproj, or shapely libraries
-4. Navigate to downloaded wheel files using the console `cd c:\path\to\downloaded_wheels`
+4. Navigate to downloaded wheel files using the console `cd c:/path/to/downloaded_wheels`
 5. Install the wheel (.whl) files and libraries using `pip install`  
   
 *64-bit Example*
@@ -77,7 +77,7 @@ conda install -c ioos rtree
 
 ### Run
 1. Download [this repository](https://github.com/rwenite/msa-thesis/archive/master.zip)  
-2. Unzip the file and navigate to the code folder `cd c:\path\to\msa-thesis-master\py`  
+2. Unzip the file and navigate to the code folder `cd c:/path/to/msa-thesis-master/py`  
 3. Execute the code using `python thesis.py`
 ```shell
 cd c:/path/to/msa-thesis-master/py
