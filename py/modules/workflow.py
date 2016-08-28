@@ -449,7 +449,7 @@ def gen_contrib(pkl, rf, outliers, variables, suspect_value=10, outlier_col='out
         df.index = svariables.index
         df = pd.concat([suspects[cls_col], df], axis=1)
         with open(pkl, 'wb') as f:
-            pickle.dump(df, f)
+            pickle.dump(df, f, protocol=4)
         logging.info('Pickled outlier variable contributions ' + pkl)
     else:
         with open(pkl, 'rb') as f:
@@ -542,7 +542,7 @@ def gen_f1_scores(pkl, obj, variables, targets, cv_files, cvs, persist=True, n_j
         scores = pd.Series(scores, name='mean_f1_score')
         cv_scores = pd.concat([cvs, scores], axis=1)
         with open(pkl, 'wb') as f:
-            pickle.dump(cv_scores, f)
+            pickle.dump(cv_scores, f, protocol=4)
         logging.info('Pickled F1 scores of cross validation tests ' + pkl)
     else:
         with open(pkl, 'rb') as f:
@@ -608,7 +608,7 @@ def gen_gdc(data_files, target, epsg, pkl, cols=[], persist=True):
         gdc = gpd.GeoDataFrame(gdc)
         gdc.crs = crs
         with open(pkl, 'wb') as f:
-            pickle.dump(gdc, f)
+            pickle.dump(gdc, f, protocol=4)
         logging.info('Pickled GeoDataFrame file ' + pkl)
     else:
         with open(pkl, 'rb') as f:
@@ -726,7 +726,7 @@ def gen_gdcn(gdc,
                 vkeep = ocorr.keep.tolist() + [target] + ignr_corr
             gdcn = gdcn[vkeep]  # keep non-correlated variables          
             with open(corr_pkl, 'wb') as f:
-                pickle.dump(ocorr, f)
+                pickle.dump(ocorr, f, protocol=4)
             logging.info('Pickled dictionary of removed correlated variables at ' + corr_pkl)
         
         # (Scale) Use a scaler to transform variables
@@ -739,7 +739,7 @@ def gen_gdcn(gdc,
             
         # (Save) Pickle the [complete] data
         with open(pkl, 'wb') as f:
-            pickle.dump(gdcn, f)
+            pickle.dump(gdcn, f, protocol=4)
         logging.info('Calculated and pickled combined geodata file ' + pkl)
     else:
         with open(pkl, 'rb') as f:
@@ -826,7 +826,7 @@ def gen_imp(pkl, obj, variable_cols, persist=True):
         imp['variable'] = imp.index.values
         imp = imp.sort_values(by='importance', ascending=False)
         with open(pkl, 'wb') as f:
-            pickle.dump(imp, f)
+            pickle.dump(imp, f, protocol=4)
         logging.info('Pickled random forest variable importances ' + pkl)
     else:
         with open(pkl, 'rb') as f:
@@ -875,7 +875,7 @@ def gen_mprob(pkl, prob, cls_col='predict', prob_col='max_prob', persist=True):
         mprob[cls_col] = mprob.index.values
         mprob = mprob.sort_values(by=prob_col, ascending=False)
         with open(pkl, 'wb') as f:
-            pickle.dump(mprob, f)
+            pickle.dump(mprob, f, protocol=4)
         logging.info('Pickled mean class probabilities ' + pkl)
     else:
         with open(pkl, 'rb') as f:
@@ -940,7 +940,7 @@ def gen_outliers(pkl, prox_files, target_cls, persist=True):
         outliers = pd.concat([iprox, icls], axis=1)
         outliers.index = idx
         with open(pkl, 'wb') as f:
-            pickle.dump(outliers, f)
+            pickle.dump(outliers, f, protocol=4)
         logging.info('Pickled outlier measures ' + pkl)
     else:
         with open(pkl, 'rb') as f:
@@ -992,7 +992,7 @@ def gen_pkl(_pkl, _func, _lib='pickle', _persist=True, *args, **kwargs):
         data = _func(*args, **kwargs)
         if _lib == 'pickle' and _persist:
             with open(_pkl, 'wb') as f:
-                pickle.dump(data, f)
+                pickle.dump(data, f, protocol=4)
         elif _lib == 'joblib' and _persist:
             joblib.dump(data, _pkl)
         logging.info('Pickled data from ' + _func.__name__ + ' for ' + _pkl)
@@ -1048,7 +1048,7 @@ def gen_prob(pkl, obj, variables, persist=True):
         max_prob = pd.Series(cls_prob.apply(max, axis=1).values, name='max_prob')
         prob = pd.concat([cls_prob, max_prob, pred], axis=1)
         with open(pkl, 'wb') as f:
-            pickle.dump(prob, f)
+            pickle.dump(prob, f, protocol=4)
         logging.info('Pickled random forest probabilities ' + pkl)
     else:
         with open(pkl, 'rb') as f:
@@ -1092,7 +1092,7 @@ def gen_prox(pkl, obj, variables, persist=True):
         prox = 1. - helpers.rf_prox(obj, variables.values)
         prox = pd.DataFrame(prox, index=variables.index)
         with open(pkl, 'wb') as f:
-            pickle.dump(prox, f)
+            pickle.dump(prox, f, protocol=4)
         logging.info('Pickled random forest proximities ' + pkl)
     else:
         logging.info('Pickled random forest proximities already exists, skipping ' + pkl)
