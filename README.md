@@ -25,7 +25,7 @@ The ubiquitous availability of location technologies has enabled large quantitie
 * [rtree](http://toblerity.org/rtree/)  
   
 ### Windows Installation
-1. Install [Anaconda Python 3.5](https://www.continuum.io/downloads/)
+1. Install [Anaconda Python 3.5](https://www.continuum.io/downloads#windows) for windows
 2. Download wheel files: [GDAL](http://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal), [Fiona](http://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona), [pyproj](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyproj), and [shapely](http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) for Python 3.5 (cp35)
 3. Uninstall existing OSGeo4W, GDAL, Fiona, pyproj, or shapely libraries
 4. Navigate to downloaded wheel files using the console `cd c:\path\to\downloaded_wheels`
@@ -64,7 +64,7 @@ conda install -c ioos rtree
 Thanks to [Geoff Boeing](http://geoffboeing.com/about/) for the [Using geopandas on windows](http://geoffboeing.com/2014/09/using-geopandas-windows/) blog post and [Christoph Gohlke](http://www.lfd.uci.edu/~gohlke/) for the [wheel files](http://www.lfd.uci.edu/~gohlke/pythonlibs/).
   
 ### Linux Installation
-1. Install [Anaconda Python 3.5](https://www.continuum.io/downloads/)  
+1. Install [Anaconda Python 3.5](https://www.continuum.io/downloads#linux) for linux  
 2. Install libraries using `pip install` and `conda install`  
 ```shell
 pip install treeinterpreter
