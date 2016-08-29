@@ -13,8 +13,9 @@ The ubiquitous availability of location technologies has enabled large quantitie
 The code was written in [Python](https://www.python.org/about/) and has been tested for the [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/) for Windows and Linux. The code uses random forest models to learn geospatial patterns for the prediction and outlier detection of known spatial object classes (Figure 1).
 * Details can be found in Section 4 of the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf)  
   
+![Figure 1](https://github.com/rwenite/msa-thesis/blob/master/methods.png)
+Figure 1. Flowchart of code process
 
-  
 ### Dependencies
 * [Anaconda Python 3.5](https://www.continuum.io/downloads/)  
 * [GDAL](http://www.gdal.org/)  
