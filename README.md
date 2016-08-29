@@ -100,7 +100,7 @@ python thesis.py config.txt c:/path/to/output_folder
 The config file can be used to apply and alter the methods to other datasets.  
 Please see Section 4.1 in the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf) for more details.  
   
-*Note: The config.txt file contains the settings used to obtain the results in the thesis. The results may be different if the recent version of the [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/) is updated.*
+*Note: The unedited config.txt file contains the settings used to obtain results for the most recent [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/). The data used in the thesis is provided in the  [reproduce release](https://github.com/rwenite/msa-thesis/releases/tag/v1.0-reproduce) which contains instructions to reproduce the thesis results.*
 
 # Information
 
