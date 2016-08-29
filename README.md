@@ -7,13 +7,14 @@ Supervised by Dr. Claus Rinner
 * [Defense Slides](https://rwenite.github.io/msa-thesis)
 
 ## Contents
-[Abstract](https://github.com/rwenite/msa-thesis#abstract)  
-[Code](https://github.com/rwenite/msa-thesis#code)  
+**[Abstract](https://github.com/rwenite/msa-thesis#abstract)**  
+**[Code](https://github.com/rwenite/msa-thesis#code)**  
 * [Dependencies](https://github.com/rwenite/msa-thesis#dependencies)  
 * [Windows Installation](https://github.com/rwenite/msa-thesis#windows-installation)  
 * [Linux Installation](https://github.com/rwenite/msa-thesis#linux-installation)  
 * [Run](https://github.com/rwenite/msa-thesis#run)  
-[Information](https://github.com/rwenite/msa-thesis#information)  
+  
+**[Information](https://github.com/rwenite/msa-thesis#information)**  
 * [Defense](https://github.com/rwenite/msa-thesis#defense)  
 * [Hardware](https://github.com/rwenite/msa-thesis#hardware)
   
