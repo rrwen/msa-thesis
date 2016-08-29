@@ -42,12 +42,12 @@ Figure 1. Flowchart of code process
 1. Install [Anaconda Python 3.5](https://www.continuum.io/downloads#windows) for windows
 2. Download wheel files: [GDAL](http://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal), [Fiona](http://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona), [pyproj](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyproj), and [shapely](http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) for Python 3.5 (cp35)
 3. Uninstall existing OSGeo4W, GDAL, Fiona, pyproj, or shapely libraries
-4. Navigate to downloaded wheel files using the console `cd c:/path/to/downloaded_wheels`
+4. Navigate to downloaded wheel files using the console `cd path/to/downloaded_wheels`
 5. Install the wheel (.whl) files and libraries using `pip install`  
   
 *64-bit Example*
 ```shell
-cd c:/path/to/downloaded_wheels
+cd path/to/downloaded_wheels
 pip install GDAL-2.0.3-cp35-cp35m-win_amd64.whl
 pip install Fiona-1.7.0-cp35-cp35m-win_amd64.whl
 pip install pyproj-1.9.5.1-cp35-cp35m-win_amd64.whl
@@ -62,7 +62,7 @@ conda install -c ioos rtree
 
 *32-bit Example*
 ```shell
-cd c:/path/to/downloaded_wheels
+cd path/to/downloaded_wheels
 pip install GDAL-2.0.3-cp35-cp35m-win32.whl
 pip install Fiona-1.7.0-cp35-cp35m-win32.whl
 pip install pyproj-1.9.5.1-cp35-cp35m-win32.whl
@@ -91,11 +91,11 @@ conda install -c ioos rtree
 
 ### Run
 1. Download [this repository](https://github.com/rwenite/msa-thesis/archive/master.zip)  
-2. Unzip the file and navigate to the code folder `cd c:/path/to/msa-thesis-master/py`  
+2. Unzip the file and navigate to the code folder `cd path/to/msa-thesis-master/py`  
 3. Execute the code using `python thesis.py`
 ```shell
-cd c:/path/to/msa-thesis-master/py
-python thesis.py config.txt c:/path/to/output_folder
+cd path/to/msa-thesis-master/py
+python thesis.py config.txt path/to/output_folder
 ```  
 The config file can be used to apply and alter the methods to other datasets.  
 Please see Section 4.1 in the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf) for more details.  
