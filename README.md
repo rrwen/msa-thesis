@@ -5,9 +5,11 @@ Thesis Defended on April 27, 2016
 Supervised by Dr. Claus Rinner
 * [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf)
 * [Defense Slides](https://rwenite.github.io/msa-thesis)
-
+  
+## Abstract
+The ubiquitous availability of location technologies has enabled large quantities of Volunteered Geographic Data (VGD) to be produced by users worldwide. VGD has been a cost effective and scalable solution to obtaining unique and freely available geospatial data. However, VGD suffers from reliability issues as user behaviour is often variable. Large quantities make manual assessments of the user generated data inefficient, expensive, and impractical. This research utilized a random forest algorithm based on geospatial semantic variables in order to aid the improvement and understanding of multi-class VGD without ground-truth reference data. An automated Python script of a random forest based procedure was developed. A demonstration of the automated script on OpenStreetMap (OSM) data with user generated tags in Toronto, Ontario, was effective in recognizing patterns in the OSM data with predictive performances of ~71% based on a class weighted metric, and the ability to reveal variable influences and outliers.
+  
 ## Contents
-**[Abstract](https://github.com/rwenite/msa-thesis#abstract)**  
 **[Code](https://github.com/rwenite/msa-thesis#code)**  
 * [Dependencies](https://github.com/rwenite/msa-thesis#dependencies)  
 * [Windows Installation](https://github.com/rwenite/msa-thesis#windows-installation)  
@@ -18,9 +20,6 @@ Supervised by Dr. Claus Rinner
 * [Defense](https://github.com/rwenite/msa-thesis#defense)  
 * [Hardware](https://github.com/rwenite/msa-thesis#hardware)
   
-## Abstract
-The ubiquitous availability of location technologies has enabled large quantities of Volunteered Geographic Data (VGD) to be produced by users worldwide. VGD has been a cost effective and scalable solution to obtaining unique and freely available geospatial data. However, VGD suffers from reliability issues as user behaviour is often variable. Large quantities make manual assessments of the user generated data inefficient, expensive, and impractical. This research utilized a random forest algorithm based on geospatial semantic variables in order to aid the improvement and understanding of multi-class VGD without ground-truth reference data. An automated Python script of a random forest based procedure was developed. A demonstration of the automated script on OpenStreetMap (OSM) data with user generated tags in Toronto, Ontario, was effective in recognizing patterns in the OSM data with predictive performances of ~71% based on a class weighted metric, and the ability to reveal variable influences and outliers.
-
 ## Code
 The code was written in [Python 3.5](https://www.python.org/about/) and has been tested for the [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/) for Windows and Linux operating systems. The code is described in Section 4 of the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf), which used a tree-optimized random forest model to learn geospatial patterns for the prediction and outlier detection of known spatial object classes (Figure 1).  
 ![Figure 1](https://github.com/rwenite/msa-thesis/blob/master/methods.png)  
