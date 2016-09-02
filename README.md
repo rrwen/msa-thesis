@@ -3,26 +3,26 @@ Richard Wen (rwen@ryerson.ca)
 Masters of Spatial Analysis, Ryerson University, 2016  
 Thesis Defended on April 27, 2016  
 Supervised by Dr. Claus Rinner
-* [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf)
-* [Defense Slides](https://rwenite.github.io/msa-thesis)
+* [PDF](https://github.com/rrwen/msa-thesis/blob/paper/thesis.pdf)
+* [Defense Slides](https://rrwen.github.io/msa-thesis)
   
 ## Abstract
 The ubiquitous availability of location technologies has enabled large quantities of Volunteered Geographic Data (VGD) to be produced by users worldwide. VGD has been a cost effective and scalable solution to obtaining unique and freely available geospatial data. However, VGD suffers from reliability issues as user behaviour is often variable. Large quantities make manual assessments of the user generated data inefficient, expensive, and impractical. This research utilized a random forest algorithm based on geospatial semantic variables in order to aid the improvement and understanding of multi-class VGD without ground-truth reference data. An automated Python script of a random forest based procedure was developed. A demonstration of the automated script on OpenStreetMap (OSM) data with user generated tags in Toronto, Ontario, was effective in recognizing patterns in the OSM data with predictive performances of ~71% based on a class weighted metric, and the ability to reveal variable influences and outliers.
   
 ## Contents
-**[Code](https://github.com/rwenite/msa-thesis#code)**  
-* [Dependencies](https://github.com/rwenite/msa-thesis#dependencies)  
-* [Windows Installation](https://github.com/rwenite/msa-thesis#windows-installation)  
-* [Linux Installation](https://github.com/rwenite/msa-thesis#linux-installation)  
-* [Run](https://github.com/rwenite/msa-thesis#run)  
+**[Code](https://github.com/rrwen/msa-thesis#code)**  
+* [Dependencies](https://github.com/rrwen/msa-thesis#dependencies)  
+* [Windows Installation](https://github.com/rrwen/msa-thesis#windows-installation)  
+* [Linux Installation](https://github.com/rrwen/msa-thesis#linux-installation)  
+* [Run](https://github.com/rrwen/msa-thesis#run)  
   
-**[Information](https://github.com/rwenite/msa-thesis#information)**  
-* [Defense](https://github.com/rwenite/msa-thesis#defense)  
-* [Hardware](https://github.com/rwenite/msa-thesis#hardware)
+**[Information](https://github.com/rrwen/msa-thesis#information)**  
+* [Defense](https://github.com/rrwen/msa-thesis#defense)  
+* [Hardware](https://github.com/rrwen/msa-thesis#hardware)
   
 ## Code
-The code was written in [Python 3.5](https://www.python.org/about/) and has been tested for the [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/) for Windows and Linux operating systems. The code is described in Section 4 of the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf), which used a tree-optimized random forest model to learn geospatial patterns for the prediction and outlier detection of known spatial object classes (Figure 1).  
-![Figure 1](https://github.com/rwenite/msa-thesis/blob/master/methods.png)  
+The code was written in [Python 3.5](https://www.python.org/about/) and has been tested for the [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/) for Windows and Linux operating systems. The code is described in Section 4 of the [PDF](https://github.com/rrwen/msa-thesis/blob/paper/thesis.pdf), which used a tree-optimized random forest model to learn geospatial patterns for the prediction and outlier detection of known spatial object classes (Figure 1).  
+![Figure 1](https://github.com/rrwen/msa-thesis/blob/master/methods.png)  
 Figure 1. Flowchart of code process  
 
 ### Dependencies
@@ -90,7 +90,7 @@ conda install -c ioos rtree
 ``` 
 
 ### Run
-1. Download [this repository](https://github.com/rwenite/msa-thesis/archive/master.zip)  
+1. Download [this repository](https://github.com/rrwen/msa-thesis/archive/master.zip)  
 2. Unzip the file and navigate to the code folder `cd path/to/msa-thesis-master/py`  
 3. Execute the code using `python thesis.py`
 ```shell
@@ -98,9 +98,9 @@ cd path/to/msa-thesis-master/py
 python thesis.py config.txt path/to/output_folder
 ```  
 The config file can be used to apply and alter the methods to other datasets.  
-Please see Section 4.1 in the [PDF](https://github.com/rwenite/msa-thesis/blob/paper/thesis.pdf) for more details.  
+Please see Section 4.1 in the [PDF](https://github.com/rrwen/msa-thesis/blob/paper/thesis.pdf) for more details.  
   
-*Note: The unedited config.txt file contains the settings used to obtain results for the most recent [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/). The data used in the thesis is provided in the  [reproduce release](https://github.com/rwenite/msa-thesis/releases/tag/v1.0-reproduce) which contains instructions to reproduce the thesis results.*
+*Note: The unedited config.txt file contains the settings used to obtain results for the most recent [Mapzen Toronto data](https://mapzen.com/data/metro-extracts/metro/toronto_canada/). The data used in the thesis is provided in the  [reproduce release](https://github.com/rrwen/msa-thesis/releases/tag/v1.0-reproduce) which contains instructions to reproduce the thesis results.*
 
 # Information
 
