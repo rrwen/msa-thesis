@@ -45,7 +45,7 @@ Figure 1. Flowchart of code process
 4. Navigate to downloaded wheel files using the console `cd path/to/downloaded_wheels`
 5. Install the wheel (.whl) files and libraries using `pip install`  
   
-*64-bit Example*
+*64-bit Example ([Same wheel files used in thesis](https://github.com/rrwen/msa-thesis/releases/download/v1.0-reproduce/win-wheels-64.zip))*
 ```shell
 cd path/to/downloaded_wheels
 pip install GDAL-2.0.3-cp35-cp35m-win_amd64.whl
