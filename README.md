@@ -1,5 +1,7 @@
 # Geospatial Semantic Pattern Recognition in Volunteered Geographic Data Using the Random forest Algorithm
-Richard Wen (rwen@ryerson.ca)  
+
+Richard Wen  
+rwen@ryerson.ca  
 Masters of Spatial Analysis, Ryerson University, 2016  
 Thesis Defended on April 27, 2016  
 Supervised by Dr. Claus Rinner
